@@ -4,7 +4,7 @@ Name:           ukwm
 Version:        1.2.0
 Release:        1
 Summary:        lightweight GTK+ window manager
-License:        GPL-2.0
+License:        GPL-2+ LGPL-2+ MIT~OldStyle+LegalDisclaimer Expat SGI-B-2.0 
 URL:            http://www.ukui.org
 Source0:        %{name}-%{version}.tar.gz
 
