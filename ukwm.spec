@@ -74,6 +74,7 @@ BuildRequires: xkeyboard-config
 BuildRequires: xorg-x11-server-Xvfb
 
 BuildRequires: xauth
+BuildRequires: intltool
 Requires: clutter
 %description
  Ukwm is a small window manager, using GTK+ and Clutter to do
@@ -183,7 +184,7 @@ rm -rf %{buildroot}/usr/local/libexec
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%pretun
+%preun
 update-alternatives --remove x-window-manager \
         /usr/bin/ukwm
         
