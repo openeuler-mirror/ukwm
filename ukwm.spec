@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           ukwm
-Version:        1.2.0
+Version:        1.2.1
 Release:        1
 Summary:        lightweight GTK+ window manager
 License:        GPL-2+ LGPL-2+ MIT~OldStyle+LegalDisclaimer Expat SGI-B-2.0 
@@ -158,6 +158,10 @@ Ukwm is a small window manager, using GTK+ and Clutter to do
 
 %build
 ./autogen.sh
+
+%define gettext_version %(dnf info gettext |grep Version |awk '{print $3}'| awk -F "." 'BEGIN {OFS = FS} {print $1,$2}')
+sed -i "/GETTEXT_MACRO_VERSION/s/0.19/%{gettext_version}/g" po/Makefile.in.in
+
 make
 
 %install
@@ -227,6 +231,9 @@ update-alternatives --install /usr/bin/x-window-manager \
 %exclude %{_datadir}/ukui
 
 %changelog
+* Mon Oct 26 2020 douyan <douyan@kylinos.cn> - 1.2.1-1
+- update to upstream version 1.2.1
+
 * Thu Jul 9 2020 douyan <douyan@kylinos.cn> - 1.2.0-1
 - Init package for openEuler
 
