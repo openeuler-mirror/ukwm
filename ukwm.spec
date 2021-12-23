@@ -2,12 +2,12 @@
 
 Name:           ukwm
 Version:        1.2.1
-Release:        1
+Release:        2
 Summary:        lightweight GTK+ window manager
 License:        GPL-2+ LGPL-2+ MIT~OldStyle+LegalDisclaimer Expat SGI-B-2.0 
 URL:            http://www.ukui.org
 Source0:        %{name}-%{version}.tar.gz
-
+Patch0:         0001-Bump-dependency-on-gsettings-desktop-schemas-3.31.0.patch
 #BuildRequires: dh-sequence-gir is in gobject-introspection
 BuildRequires: gobject-introspection
 #BuildRequires: gnome-pkg-tools >= 0.10  debian package tool
@@ -155,7 +155,7 @@ Ukwm is a small window manager, using GTK+ and Clutter to do
 
 %prep
 %setup -q
-
+%patch0 -p1
 %build
 ./autogen.sh
 
@@ -231,6 +231,9 @@ update-alternatives --install /usr/bin/x-window-manager \
 %exclude %{_datadir}/ukui
 
 %changelog
+* Thu Dec 23 2021 pei-jiankang <peijiankang@kylinos.cn> - 1.2.1-2
+- Bump dependency on gsettings desktop schemas 3.31.0
+
 * Mon Oct 26 2020 douyan <douyan@kylinos.cn> - 1.2.1-1
 - update to upstream version 1.2.1
 
