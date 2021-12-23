@@ -1,0 +1,34 @@
+From d657d6897f3eb37201aa1bf71c514672dd054863 Mon Sep 17 00:00:00 2001
+From: pei-jiankang <peijiankang@kylinos.cn>
+Date: Thu, 23 Dec 2021 20:06:59 +0800
+Subject: [PATCH]  Bump dependency on gsettings-desktop-schemas 3.31.0
+
+---
+ debian/control | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/debian/control b/debian/control
+index 2813849..78bce9d 100755
+--- a/debian/control
++++ b/debian/control
+@@ -64,7 +64,7 @@ Depends: ${shlibs:Depends},
+          ${misc:Depends},
+          ukwm-common (>= ${source:Version}),
+          ukui-settings-daemon,
+-         gsettings-desktop-schemas (>= 3.21.4),
++         gsettings-desktop-schemas (>= 3.31.0),
+          zenity
+ Provides: x-window-manager
+ Recommends: ukui-window-switch
+@@ -88,7 +88,7 @@ Multi-Arch: same
+ Pre-Depends: ${misc:Pre-Depends}
+ Depends: ${shlibs:Depends},
+          ${misc:Depends},
+-         gsettings-desktop-schemas (>= 3.15.92),
++         gsettings-desktop-schemas (>= 3.31.0),
+          ukwm-common (>= ${source:Version})
+ Description: window manager library from the Ukwm window manager
+  Ukwm is a small window manager, using GTK+ and Clutter to do
+-- 
+2.30.0
+
