@@ -1,0 +1,98 @@
+From 6d8358f8ff42c7f6b88542cb5d953170ae7dcd53 Mon Sep 17 00:00:00 2001
+From: pei-jiankang <peijiankang@kylinos.cn>
+Date: Thu, 23 Dec 2021 20:28:00 +0800
+Subject: [PATCH] update copyright
+
+---
+ debian/changelog |  7 +++++--
+ debian/copyright | 15 +++++----------
+ 2 files changed, 10 insertions(+), 12 deletions(-)
+
+diff --git a/debian/changelog b/debian/changelog
+index 8bea70f..d771b53 100755
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -1,14 +1,17 @@
+-ukwm (1.2.1-1) unstable; urgency=medium
++ukwm (1.2.1-1) experimental; urgency=medium
+ 
+   [ Debian Janitor ]
+   * Use secure URI in Homepage field.
+   * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+     Repository-Browse.
+ 
++  [ Marco Trevisan ]
++  * debian/control: Bump dependency on gsettings-desktop-schemas 3.31.0.
++
+   [ handsome_feng ]
+   * New upstream bugfix release.
+ 
+- -- handsome_feng <jianfengli@ubuntukylin.com>  Thu, 24 Sep 2020 19:41:48 +0800
++ -- handsome_feng <jianfengli@ubuntukylin.com>  Thu, 03 Jun 2021 00:12:05 +0800
+ 
+ ukwm (1.2.0-1) unstable; urgency=medium
+ 
+diff --git a/debian/copyright b/debian/copyright
+index ca10d52..97fb8c8 100755
+--- a/debian/copyright
++++ b/debian/copyright
+@@ -12,11 +12,6 @@ License: GPL-2+
+ Files: src/backends/meta-backend-private.h
+        src/backends/meta-cursor-renderer.c
+        src/backends/meta-cursor-renderer.h
+-       src/backends/x11/meta-backend-x11.h
+-       src/backends/x11/meta-input-settings-x11.c
+-       src/backends/x11/meta-cursor-renderer-x11.c
+-       src/backends/x11/meta-cursor-renderer-x11.h
+-       src/backends/x11/meta-backend-x11.c
+        src/core/meta-accel-parse.h
+        src/meta/meta-backend.h
+        src/meta/meta-background-image.h
+@@ -205,7 +200,7 @@ License: GPL-2+
+ 
+ 
+ Files: src/wayland/meta-wayland-dma-buf.c
+-       src/wayland/meta-wayland-dma-buf.c
++       src/wayland/meta-wayland-dma-buf.h
+ Copyright:
+    Copyright (C) 2016 Red Hat Inc.
+    Copyright (C) 2017 Intel Corporation
+@@ -295,6 +290,7 @@ License: GPL-2+
+ Files: src/backends/meta-input-settings.c
+        src/tests/test-runner.c
+        src/tests/test-utils.c
++       src/tests/ukwm-all.test.in       
+        src/backends/native/meta-cursor-renderer-native.c
+ Copyright:
+    Copyright 2014 Red Hat Inc.
+@@ -455,8 +451,7 @@ Copyright:
+    Copyright (C) 2005 Elijah Newren
+ License: GPL-2+
+ 
+-Files: src/core/core.c
+-       src/core/util-private.h
++Files: src/core/util-private.h
+        src/core/util.c
+        src/meta/common.h
+        src/meta/util.h
+@@ -2411,6 +2406,7 @@ Files: ABOUT-NLS
+        debian/ukwm.install
+        debian/ukwm.postinst
+        debian/ukwm.prerm
++       debian/upstream/metadata       
+        debian/watch
+        doc/code-overview.txt
+        doc/dialogs.txt
+@@ -2568,8 +2564,7 @@ Files: ABOUT-NLS
+        src/tests/stacking/mixed-windows.metatest
+        src/tests/stacking/override-redirect.metatest
+        src/tests/stacking/set-parent.metatest
+-       src/tests/ukwm-all.test.in
+-       src/wayland/meta-wayland-dma-buf.h
++       src/tests/ukwm-all.testmeta-wayland-dma-buf.h       
+        src/wayland/protocol/gtk-primary-selection.xml
+        src/wayland/protocol/gtk-shell.xml
+        src/x11/ukwm-Xatomtype.h
+-- 
+2.30.0
+
