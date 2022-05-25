@@ -2,9 +2,9 @@
 
 Name:           ukwm
 Version:        1.2.1
-Release:        3
+Release:        4
 Summary:        lightweight GTK+ window manager
-License:        GPL-2+ LGPL-2+ MIT~OldStyle+LegalDisclaimer Expat SGI-B-2.0 
+License:        LGPL-2.0-or-later and GPL-2.0-or-later and MIT
 URL:            http://www.ukui.org
 Source0:        %{name}-%{version}.tar.gz
 Patch0:         0001-Bump-dependency-on-gsettings-desktop-schemas-3.31.0.patch
@@ -233,6 +233,9 @@ update-alternatives --install /usr/bin/x-window-manager \
 %exclude %{_datadir}/ukui
 
 %changelog
+* Wed May 25 2022 tanyulong <tanyulong@kylinos.cn> - 1.2.1-4
+- Improve the project according to the requirements of compliance improvement
+
 * Thu Dec 23 2021 pei-jiankang <peijiankang@kylinos.cn> - 1.2.1-3
 - update copyright
 
