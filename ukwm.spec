@@ -2,7 +2,7 @@
 
 Name:           ukwm
 Version:        1.2.1
-Release:        1
+Release:        2
 Summary:        lightweight GTK+ window manager
 License:        GPL-2+ LGPL-2+ MIT~OldStyle+LegalDisclaimer Expat SGI-B-2.0 
 URL:            http://www.ukui.org
@@ -159,7 +159,7 @@ Ukwm is a small window manager, using GTK+ and Clutter to do
 %build
 ./autogen.sh
 
-%define gettext_version %(dnf info gettext |grep Version |awk '{print $3}'| awk -F "." 'BEGIN {OFS = FS} {print $1,$2}')
+%define gettext_version %(dnf info gettext |grep Version |awk '{print $3}'| awk -F "." 'BEGIN {OFS = FS} {print $1,$2}'| grep awk 'NR==1')
 sed -i "/GETTEXT_MACRO_VERSION/s/0.19/%{gettext_version}/g" po/Makefile.in.in
 
 make
@@ -231,6 +231,9 @@ update-alternatives --install /usr/bin/x-window-manager \
 %exclude %{_datadir}/ukui
 
 %changelog
+* Fri Dec 2 2022 douyan <douyan@kylinos.cn> - 1.2.1-2
+- fix 22.03 sp1 build error
+
 * Mon Oct 26 2020 douyan <douyan@kylinos.cn> - 1.2.1-1
 - update to upstream version 1.2.1
 
