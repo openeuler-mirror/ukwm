@@ -1,8 +1,6 @@
-%define debug_package %{nil}
-
 Name:           ukwm
 Version:        1.2.1
-Release:        2
+Release:        3
 Summary:        lightweight GTK+ window manager
 License:        GPL-2+ LGPL-2+ MIT~OldStyle+LegalDisclaimer Expat SGI-B-2.0 
 URL:            http://www.ukui.org
@@ -190,7 +188,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %preun
 update-alternatives --remove x-window-manager \
-        /usr/bin/ukwm
+        /usr/bin/ukwm &> /dev/null || :
         
 %post
 update-alternatives --install /usr/bin/x-window-manager \
@@ -231,6 +229,9 @@ update-alternatives --install /usr/bin/x-window-manager \
 %exclude %{_datadir}/ukui
 
 %changelog
+* Fri Jan 20 2023 douyan <douyan@kylinos.cn> - 1.2.1-3
+- fix uninstall issue
+
 * Fri Dec 2 2022 douyan <douyan@kylinos.cn> - 1.2.1-2
 - fix 22.03 sp1 build error
 
