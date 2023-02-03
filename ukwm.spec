@@ -1,8 +1,6 @@
-%define debug_package %{nil}
-
 Name:           ukwm
 Version:        1.2.1
-Release:        4
+Release:        5
 Summary:        lightweight GTK+ window manager
 License:        LGPL-2.0-or-later and GPL-2.0-or-later and MIT
 URL:            http://www.ukui.org
@@ -161,7 +159,7 @@ Ukwm is a small window manager, using GTK+ and Clutter to do
 %build
 ./autogen.sh
 
-%define gettext_version %(dnf info gettext |grep Version |awk '{print $3}'| awk -F "." 'BEGIN {OFS = FS} {print $1,$2}')
+%define gettext_version %(dnf info gettext |grep Version |awk '{print $3}'| awk -F "." 'BEGIN {OFS = FS} {print $1,$2}'| grep awk 'NR==1')
 sed -i "/GETTEXT_MACRO_VERSION/s/0.19/%{gettext_version}/g" po/Makefile.in.in
 
 make
@@ -192,7 +190,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %preun
 update-alternatives --remove x-window-manager \
-        /usr/bin/ukwm
+        /usr/bin/ukwm &> /dev/null || :
         
 %post
 update-alternatives --install /usr/bin/x-window-manager \
@@ -233,6 +231,9 @@ update-alternatives --install /usr/bin/x-window-manager \
 %exclude %{_datadir}/ukui
 
 %changelog
+* Fri Feb 3 2023 douyan <douyan@kylinos.cn> - 1.2.1-5
+- fix build error and uninstall issue
+
 * Wed May 25 2022 tanyulong <tanyulong@kylinos.cn> - 1.2.1-4
 - Improve the project according to the requirements of compliance improvement
 
@@ -247,4 +248,3 @@ update-alternatives --install /usr/bin/x-window-manager \
 
 * Thu Jul 9 2020 douyan <douyan@kylinos.cn> - 1.2.0-1
 - Init package for openEuler
-
