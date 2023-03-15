@@ -1,6 +1,6 @@
 Name:           ukwm
 Version:        1.2.1
-Release:        5
+Release:        6
 Summary:        lightweight GTK+ window manager
 License:        LGPL-2.0-or-later and GPL-2.0-or-later and MIT
 URL:            http://www.ukui.org
@@ -74,6 +74,7 @@ BuildRequires: xorg-x11-server-Xvfb
 
 BuildRequires: xauth
 BuildRequires: intltool
+BuildRequires: chrpath
 Requires: clutter
 %description
  Ukwm is a small window manager, using GTK+ and Clutter to do
@@ -182,7 +183,7 @@ rm -rf %{buildroot}/usr/local/include
 mkdir -p %{buildroot}/usr/lib/ukwm
 cp -rf %{buildroot}/usr/local/libexec/ukwm-restart-helper  %{buildroot}/usr/lib/ukwm/ukwm-restart-helper
 rm -rf %{buildroot}/usr/local/libexec
-
+chrpath -d %{buildroot}/usr/bin/ukwm
 
 
 %clean
@@ -231,6 +232,9 @@ update-alternatives --install /usr/bin/x-window-manager \
 %exclude %{_datadir}/ukui
 
 %changelog
+* Wed Mar 01 2023 tanyulong <tanyulong@kylinos.cn> - 1.2.1-6
+- remove rpath of ukwm
+
 * Fri Feb 3 2023 douyan <douyan@kylinos.cn> - 1.2.1-5
 - fix build error and uninstall issue
 
