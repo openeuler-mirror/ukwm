@@ -1,0 +1,60 @@
+diff -u -r ukwm-1.2.1/clutter/configure.ac ukwm-1.2.1/clutter/configure.ac
+--- ukwm-1.2.1/clutter/configure.ac	2020-09-24 19:42:48.000000000 +0800
++++ ukwm-1.2.1/clutter/configure.ac	2023-06-20 18:43:56.000000000 +0800
+@@ -609,7 +609,6 @@
+                            -Wall
+                            -Wcast-align
+                            -Wuninitialized
+-                           -Wno-strict-aliasing
+                            -Wshadow"
+ 
+ AC_ARG_ENABLE([Werror],
+@@ -619,7 +618,6 @@
+ 
+ AS_IF([test "x$enable_Werror" = xyes], [
+   MAINTAINER_COMPILER_FLAGS="$MAINTAINER_COMPILER_FLAGS
+-                             -Werror=logical-op
+                              -Werror=pointer-arith
+                              -Werror=missing-declarations
+                              -Werror=redundant-decls
+diff -u -r ukwm-1.2.1/cogl/configure.ac ukwm-1.2.1/cogl/configure.ac
+--- ukwm-1.2.1/cogl/configure.ac	2020-09-24 19:42:48.000000000 +0800
++++ ukwm-1.2.1/cogl/configure.ac	2023-06-20 18:40:29.000000000 +0800
+@@ -313,11 +313,11 @@
+ )
+ 
+ MAINTAINER_COMPILER_FLAGS="-Wall -Wcast-align -Wformat -Wformat-security
+-                           -Werror=uninitialized -Werror=no-strict-aliasing
++                           -Werror=uninitialized
+                            -Werror=empty-body -Werror=init-self -Werror=undef
+                            -Werror=declaration-after-statement -Werror=vla
+                            -Werror=pointer-arith -Werror=missing-declarations
+-                           -Werror=maybe-uninitialized"
++                           -Werror=uninitialized"
+ 
+ AS_CASE(
+   [$enable_maintainer_flags],
+diff -u -r ukwm-1.2.1/cogl/test-fixtures/Makefile.am ukwm-1.2.1/cogl/test-fixtures/Makefile.am
+--- ukwm-1.2.1/cogl/test-fixtures/Makefile.am	2020-09-24 19:42:48.000000000 +0800
++++ ukwm-1.2.1/cogl/test-fixtures/Makefile.am	2023-06-20 18:39:59.000000000 +0800
+@@ -12,7 +12,7 @@
+ 	-DTESTS_DATADIR=\""$(top_srcdir)/tests/data"\" \
+ 	-DCOGL_COMPILATION
+ 
+-libtest_fixtures_la_CFLAGS = -g3 -O0 $(COGL_DEP_CFLAGS) $(COGL_EXTRA_CFLAGS) -Wno-error=maybe-uninitialized -Wno-error=nested-externs -Wno-error=missing-prototypes
++libtest_fixtures_la_CFLAGS = -g3 -O0 $(COGL_DEP_CFLAGS) $(COGL_EXTRA_CFLAGS) -Wno-error=uninitialized -Wno-error=nested-externs -Wno-error=missing-prototypes
+ 
+ libtest_fixtures_la_SOURCES = \
+ 	test-unit.h \
+diff -u -r ukwm-1.2.1/cogl/tests/conform/Makefile.am ukwm-1.2.1/cogl/tests/conform/Makefile.am
+--- ukwm-1.2.1/cogl/tests/conform/Makefile.am	2020-09-24 19:42:48.000000000 +0800
++++ ukwm-1.2.1/cogl/tests/conform/Makefile.am	2023-06-20 18:39:46.000000000 +0800
+@@ -122,7 +122,7 @@
+ 	-DCOGL_DISABLE_DEPRECATION_WARNINGS \
+ 	-DTESTS_DATADIR=\""$(top_srcdir)/tests/data"\"
+ 
+-test_conformance_CFLAGS = -g3 -O0 $(COGL_DEP_CFLAGS) $(COGL_EXTRA_CFLAGS) -Wno-error=maybe-uninitialized -Wno-error=nested-externs -Wno-error=missing-prototypes
++test_conformance_CFLAGS = -g3 -O0 $(COGL_DEP_CFLAGS) $(COGL_EXTRA_CFLAGS) -Wno-error=uninitialized -Wno-error=nested-externs -Wno-error=missing-prototypes
+ test_conformance_LDADD = \
+ 	$(COGL_DEP_LIBS) \
+ 	$(top_builddir)/cogl/libukwm-cogl-$(LIBUKWM_API_VERSION).la \

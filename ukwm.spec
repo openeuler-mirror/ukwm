@@ -1,12 +1,13 @@
 Name:           ukwm
 Version:        1.2.1
-Release:        6
+Release:        7
 Summary:        lightweight GTK+ window manager
 License:        LGPL-2.0-or-later and GPL-2.0-or-later and MIT
 URL:            http://www.ukui.org
 Source0:        %{name}-%{version}.tar.gz
 Patch0:         0001-Bump-dependency-on-gsettings-desktop-schemas-3.31.0.patch
 Patch1:         0002-update-copyright.patch 
+Patch2:         0003-fix-clang.patch
 #BuildRequires: dh-sequence-gir is in gobject-introspection
 BuildRequires: gobject-introspection
 #BuildRequires: gnome-pkg-tools >= 0.10  debian package tool
@@ -154,10 +155,12 @@ Ukwm is a small window manager, using GTK+ and Clutter to do
  used to generate dynamic bindings.
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
+%autosetup -p1
 %build
+%if "%toolchain" == "clang"
+	export CFLAGS="$CFLAGS -Wno-error=format-nonliteral"
+	export CXXFLAGS="$CXXFLAGS -Wno-error=format-nonliteral"
+%endif
 ./autogen.sh
 
 %define gettext_version %(dnf info gettext |grep Version |awk '{print $3}'| awk -F "." 'BEGIN {OFS = FS} {print $1,$2}'| grep awk 'NR==1')
@@ -232,6 +235,9 @@ update-alternatives --install /usr/bin/x-window-manager \
 %exclude %{_datadir}/ukui
 
 %changelog
+* Tue Jun 20 2023 yoo <sunyuechi@iscas.ac.cn> - 1.2.1-7
+- fix clang build error
+
 * Wed Mar 01 2023 tanyulong <tanyulong@kylinos.cn> - 1.2.1-6
 - remove rpath of ukwm
 
